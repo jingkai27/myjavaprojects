@@ -22,10 +22,14 @@ void displayInfo() - Method that prints out the information about the car (brand
 */
 
 public class Car {
+    // attributes
     String brand;
     String model;
     int year;
     double mileage;
+
+    // methods
+    // constructor to initialise car
     public Car(String brand, String model, int year){
         this.brand = brand;
         this.model = model;
@@ -38,6 +42,7 @@ public class Car {
             this.year = 2024;
         }
         this.mileage = 0.0;
+        Car.totalCars += 1;
     }
     // Method to display information about the car
     public void displayInfo() {
@@ -45,5 +50,31 @@ public class Car {
         System.out.println("Model: " + model);
         System.out.println("Year: " + year);
         System.out.println("Mileage: " + mileage + " miles");
+    }
+
+    // drive method
+    public void drive(double distanceTravel){
+        System.out.println("Travelling " + distanceTravel + " miles now...");
+        mileage += distanceTravel;
+        System.out.println("mileage: " + mileage);
+    }
+
+    public static void main(String[] args){
+        Car CarOne = new Car("Tesla", "E", 2021);
+
+        // Use the display method
+        int caryear = CarOne.year;
+
+        // running displayInfo()
+        CarOne.displayInfo();
+        CarOne.drive(50);
+        System.out.println("This car was manufactured in " + caryear);
+    }
+
+    // class function
+    static int totalCars = 0;
+
+    public static int getTotalCars(){
+        return totalCars;
     }
 }
