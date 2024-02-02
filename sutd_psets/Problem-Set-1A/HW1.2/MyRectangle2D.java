@@ -7,6 +7,7 @@ public class MyRectangle2D {
         System.out.println("This is the width: " + rect2.getWidth());
         System.out.println("This is the area: " + rect2.getArea());
         System.out.println("This is the perimeter: " + rect2.getPerimeter());
+        System.out.println("This is the boolean result " + rect2.pointInsideRectangle(3,4));
     }
     // data field
     private double x;
@@ -68,7 +69,18 @@ public class MyRectangle2D {
     public double getPerimeter(){
         return 2 * this.width + 2*this.height;
     }
+
+    public boolean pointInsideRectangle (double x_new, double y_new){
+        if (x_new < this.getX() + this.getWidth() && x_new > this.getX() - this.getWidth()){
+            if (y_new < this.getY() + this.getHeight() && y_new > this.getY() - this.getHeight()){
+                return true;
+            }
+        }
+    return false;
+    }
+
 }
+
 
 /* [20 points] Geometry: The MyRectangle2D class
 
