@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed251bd9-3633-49ff-aeaf-4a6aeb9d1dc0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HW1.2/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW1.2/MyRectangle2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW1.2/MyRectangle2D.java" afterDir="false" />
-    </list>
+    <list default="true" id="ed251bd9-3633-49ff-aeaf-4a6aeb9d1dc0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
