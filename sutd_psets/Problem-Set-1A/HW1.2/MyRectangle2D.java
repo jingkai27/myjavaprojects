@@ -7,7 +7,16 @@ public class MyRectangle2D {
         System.out.println("This is the width: " + rect2.getWidth());
         System.out.println("This is the area: " + rect2.getArea());
         System.out.println("This is the perimeter: " + rect2.getPerimeter());
-        System.out.println("This is the boolean result " + rect2.pointInsideRectangle(3,4));
+        System.out.println("This is the boolean result " + rect2.pointInsideRectangle(100,100));
+        System.out.println("Rect inside rect: " + rect1.rectangleInsideRectangle(rect2) + ".");
+
+        System.out.println("----- NEW -------");
+        MyRectangle2D rect3 = new MyRectangle2D(100,6,1,2);
+        System.out.println("Rect inside rect: " + rect2.rectangleInsideRectangle(rect1) + ".");
+        System.out.println("Rect overlap rect "+ rect2.rectOverlap(rect3)+".");
+
+        }
+
     }
     // data field
     private double x;
@@ -71,12 +80,71 @@ public class MyRectangle2D {
     }
 
     public boolean pointInsideRectangle (double x_new, double y_new){
-        if (x_new < this.getX() + this.getWidth() && x_new > this.getX() - this.getWidth()){
-            if (y_new < this.getY() + this.getHeight() && y_new > this.getY() - this.getHeight()){
+        double half_width = this.getWidth() / 2;
+        double half_height = this.getHeight()/2;
+        if (x_new < this.getX() + half_width && x_new > this.getX() - half_width){
+            if (y_new < this.getY() + half_height && y_new > this.getY() - half_height){
                 return true;
             }
         }
     return false;
+    }
+
+    public boolean rectangleInsideRectangle(MyRectangle2D newRect){
+        // Condition 1: Center must be inside self rectangle
+        // get centers first
+        double newRectX = newRect.getX();
+        double newRectY = newRect.getY();
+
+        if(pointInsideRectangle(newRectX, newRectY)==true){
+            // Condition 2: ends of small rectangle must be within the ends of big rectangle
+            double newRectHalfWidth = newRect.getWidth()/2;
+            double newRectHalfHeight = newRect.getHeight()/2;
+
+            double corner1 = newRectX + newRectHalfWidth;
+            double corner2 = newRectX - newRectHalfWidth;
+            double corner3 = newRectY + newRectHalfHeight;
+            double corner4 = newRectY - newRectHalfHeight;
+
+            if (pointInsideRectangle(corner1, corner3) && pointInsideRectangle(corner2, corner4)){
+                return true;
+            } else return false;
+        }
+    return false; }
+
+    public boolean rectOverlap(MyRectangle2D newRect){
+        // if any of the 4 points are inside the main rectangle, return true
+        double newRectX = newRect.getX();
+        double newRectY = newRect.getY();
+
+        double halfWidth = newRect.getWidth()/2;
+        double halfHeight = newRect.getHeight()/2;
+
+        double corner1 = newRectX + halfWidth;
+        double corner2 = newRectX - halfWidth;
+        double corner3 = newRectY + halfHeight;
+        double corner4 = newRectY - halfHeight;
+
+        boolean overlap = false;
+
+        if (pointInsideRectangle(corner1, corner3)){
+            overlap = true;
+        }
+
+        if (pointInsideRectangle(corner1, corner4)){
+            overlap = true;
+        }
+
+        if (pointInsideRectangle(corner2, corner3)){
+            overlap = true;
+        }
+
+        if (pointInsideRectangle(corner2, corner4)){
+            overlap = true;
+        }
+
+        return overlap;
+
     }
 
 }
@@ -92,8 +160,8 @@ Define the MyRectangle2D class that contains:
 • [OK] A constructor that creates a rectangle with the specified x, y, width, and height: MyRectangle2D(double x, double y, double width, double height)
 • [OK] A method getArea() that returns the area of the rectangle.
 • [OK] A method getPerimeter() that returns the perimeter of the rectangle.
-• A method contains(double x, double y) that returns true if the specified point (x, y) is inside this rectangle. See Figure 1(a).
-• A method contains(MyRectangle2D r) that returns true if the specified rectangle is inside this rectangle. See Figure 1(b).
+• [OK] A method contains(double x, double y) that returns true if the specified point (x, y) is inside this rectangle. See Figure 1(a).
+• [OK] A method contains(MyRectangle2D r) that returns true if the specified rectangle is inside this rectangle. See Figure 1(b).
 • A method overlaps(MyRectangle2D r) that returns true if the specified rectangle overlaps with this rectangle. See Figure 1(c).
 
 (a) (b) (c)
