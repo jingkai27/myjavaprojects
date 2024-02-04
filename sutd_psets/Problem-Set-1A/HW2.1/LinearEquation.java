@@ -13,11 +13,17 @@ class LinearEquation {
 
 
     public int getA(){return a;}
+    public void setA(int newVal){this.a = newVal;}
     public int getB(){return b;}
+    public void setB(int newVal){this.b = newVal;}
     public int getC(){return c;}
+    public void setC(int newVal){this.c = newVal;}
     public int getD(){return d;}
+    public void setD(int newVal){this.d = newVal; }
     public int getE(){return e;}
+    public void setE(int newVal){this.e = newVal;}
     public int getF(){return f;}
+    public void setF(int newVal){this.f = newVal;}
 
     public LinearEquation(int a, int b, int c, int d, int e, int f){
         this.a = a;
@@ -38,7 +44,7 @@ class LinearEquation {
     }
 
     public boolean isSolvable(){
-        if ((this.a * this.d - this.b * this.c) > 0 ){
+        if ((this.a * this.e - this.b * this.d) != 0 ){
             return true;
         } else return false;
     }
@@ -61,6 +67,7 @@ class LinearEquation {
         System.out.print("Enter the value of a: ");
         double a = scanner.nextDouble();
 
+
         System.out.print("Enter the value of b: ");
         double b = scanner.nextDouble();
 
@@ -77,10 +84,8 @@ class LinearEquation {
         double f = scanner.nextDouble();
 
         // Calculate determinant (ad - bc)
-        double determinant = a * d - b * c;
-
         // Check if the equation has a solution
-        if (determinant > 0) {
+        if (isSolvable() == true){
             // Calculate solutions for x and y using Cramer's rule
             double x = getX();
             double y = getY();
@@ -110,7 +115,7 @@ OK Methods getX() and getY() that return the solution for the equation
 
 Write a test program that prompts user to enter a, b, c, d, e and f and displays the result.
 
-If ad – bc is 0, report that “The equation has no solution.”
+OK If ad – bc is 0, report that “The equation has no solution.”
 
 */
 
