@@ -1,7 +1,5 @@
-// ATTENTION 
-// just edit this file
-// TestAccount.java contains the test cases provided in the problem set 
-// Put in any import statements that you need 
+// This is the correct answer.
+
 import java.time.LocalDate;
 
 public class Account {
@@ -15,7 +13,7 @@ public class Account {
     public Account() {
         this.id = 0;
         this.balance = 0;
-        this.annualInterestRate = 0;
+        annualInterestRate = 0;
         this.dateCreated = LocalDate.now();
 
     }
@@ -24,13 +22,13 @@ public class Account {
     public Account(int id, double balance) {
         this.id = id;
         this.balance = balance;
-        this.annualInterestRate = 0;
+        annualInterestRate = 0;
         this.dateCreated = LocalDate.now();
     }
 
     // GETTER METHODS
     public int getId(){
-        return id;
+        return this.id;
     }
 
     public double getBalance(){
@@ -59,13 +57,9 @@ public class Account {
     }
 
     //Method to get Monthly Interest Rate and Monthly Interest
-    public double getMonthlyInterestRate(){
-        double mir = (this.getAnnualInterestRate()) / 12;
-        /* Stringbuilder text = new StringBuilder("The Monthly Interest Rate is: ");
-        text.append(mir);
-        text.append(".");
-        string result = text.toString(); */
-        return mir;
+    public static double getMonthlyInterestRate(){
+        return getAnnualInterestRate() / 12.0;
+        // i forgot to put static - this is a static class
     }
 
     public double getMonthlyInterest(){
@@ -75,17 +69,19 @@ public class Account {
         return monthlyInterest;
     }
 
-    public void withdraw(int moneyOut){
+    public void withdraw(double moneyOut){
         double balance = this.getBalance();
         balance -= moneyOut;
         this.setBalance(balance);
+        // need to check that your variables are set properly
     }
 
-    public void deposit(int moneyIn) {
+    public void deposit(double moneyIn) {
         double balance = this.getBalance() + moneyIn;
         this.setBalance(balance);
+        // need to check that variables are set properly
     }
 }
 // **HINT**
-// The problem set says "assume all accounts have the same interest rate". 
-// What does that tell you about the variable(s) and/or method(s) relating to the interest rate? 
+// The problem set says "assume all accounts have the same interest rate".
+// What does that tell you about the variable(s) and/or method(s) relating to the interest rate?

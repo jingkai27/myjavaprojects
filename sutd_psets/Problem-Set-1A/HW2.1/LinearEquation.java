@@ -4,28 +4,22 @@
 
 import java.util.Scanner;
 class LinearEquation {
-    private int a;
-    private int b;
-    private int c;
-    private int d;
-    private int e;
-    private int f;
+    private double a;
+    private double b;
+    private double c;
+    private double d;
+    private double e;
+    private double f;
 
 
-    public int getA(){return a;}
-    public void setA(int newVal){this.a = newVal;}
-    public int getB(){return b;}
-    public void setB(int newVal){this.b = newVal;}
-    public int getC(){return c;}
-    public void setC(int newVal){this.c = newVal;}
-    public int getD(){return d;}
-    public void setD(int newVal){this.d = newVal; }
-    public int getE(){return e;}
-    public void setE(int newVal){this.e = newVal;}
-    public int getF(){return f;}
-    public void setF(int newVal){this.f = newVal;}
+    public double getA(){return a;}
+    public double getB(){return b;}
+    public double getC(){return c;}
+    public double getD(){return d;}
+    public double getE(){return e;}
+    public double getF(){return f;}
 
-    public LinearEquation(int a, int b, int c, int d, int e, int f){
+    public LinearEquation(double a, double b, double c, double d, double e, double f){
         this.a = a;
         this.b = b;
         this.c = c;
@@ -34,33 +28,25 @@ class LinearEquation {
         this.f = f;
     }
 
-    public static void main(String[] args){
-        LinearEquation linEq1 = new LinearEquation(1,2,11,2,1,10);
-        System.out.println(linEq1.getA());
-        System.out.println(linEq1.isSolvable());
-        System.out.println(linEq1.getX());
-        System.out.println(linEq1.getY());
-        linEq1.testProgram();
-    }
-
     public boolean isSolvable(){
-        if ((this.a * this.e - this.b * this.d) != 0 ){
+        if ((this.a * this.d - this.b * this.c) != 0 ){
             return true;
         } else return false;
     }
 
     public double getX(){
-        double num = this.b * this.f - this.c * this.e;
-        double deno = this.b * this.d - this.a * this.e;
+        double num = this.e * this.d - this.f * this.b;
+        double deno = this.a * this.d - this.b * this.c;
         return num / deno;
     }
 
     public double getY(){
         double x = getX();
-        return (this.c - this.a * x)/this.b;
+        return (this.e - this.a * x)/this.b;
     }
+}
 
-    public void testProgram(){
+    /*public void testProgram(){
         Scanner scanner = new Scanner(System.in);
 
         // Prompt user to enter values for a, b, c, d, e, and f
@@ -100,8 +86,7 @@ class LinearEquation {
         }
 
         scanner.close();
-        }
-    }
+        }*/
 
 /*
 
