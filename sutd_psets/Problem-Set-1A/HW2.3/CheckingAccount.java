@@ -16,7 +16,7 @@ the amount withdrawing exceeds the overdraft limit. */
 public class CheckingAccount extends Account{
 
     CheckingAccount(int id, double balance){
-        super(id, balance);
+        super();
     }
 
     public void withdraw(double amount) {

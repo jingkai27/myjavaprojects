@@ -2,6 +2,7 @@ public class MyRectangle2D {
 
     public static void main(String[] args){
         MyRectangle2D rect1 = new MyRectangle2D();
+        System.out.println("This is the fking area: " + rect1.getArea());
         System.out.println("This is the width: " + rect1.getWidth());
         MyRectangle2D rect2 = new MyRectangle2D(4,5,3.4,5.89);
         System.out.println("This is the width: " + rect2.getWidth());
@@ -14,9 +15,6 @@ public class MyRectangle2D {
         MyRectangle2D rect3 = new MyRectangle2D(100,6,1,2);
         System.out.println("Rect inside rect: " + rect2.rectangleInsideRectangle(rect1) + ".");
         System.out.println("Rect overlap rect "+ rect2.rectOverlap(rect3)+".");
-
-        }
-
     }
     // data field
     private double x;
@@ -41,19 +39,19 @@ public class MyRectangle2D {
         y = newVal;
     }
 
-    private double getWidth(){
+    public double getWidth(){
         return width;
     }
 
-    private void setWidth(double newVal){
+    public void setWidth(double newVal){
         width = newVal;
     }
 
-    private double getHeight(){
+    public double getHeight(){
         return width;
     }
 
-    private void setHeight(double newVal){
+    public void setHeight(double newVal){
         height = newVal;
     }
 
@@ -63,8 +61,8 @@ public class MyRectangle2D {
     }
 
     public MyRectangle2D(double x, double y, double h, double w){
-        x = x;
-        y = y;
+        this.x = x;
+        this.y = y;
         height = h;
         width = w;
     }
