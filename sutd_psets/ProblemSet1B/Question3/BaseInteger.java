@@ -20,7 +20,12 @@ public class BaseInteger {
     }
 
 
-    private void convertRepresentationToArray(){
+    private ArrayList<Integer> convertRepresentationToArray(){
+        /* convertRepresentationToArray()reads the information from representation and
+        stores the digits as elements in the digits int array. */
+        System.out.println(this.representation);
+        return null;
+
 
     }
 
