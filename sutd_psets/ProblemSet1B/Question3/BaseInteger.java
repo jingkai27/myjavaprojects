@@ -30,6 +30,7 @@ public class BaseInteger {
     }
 
     private void setDecimalValue(){
+        System.out.println("value");
     }
 
     public int getDecimalValue() {
