@@ -1,5 +1,6 @@
 package com.example.norman_lee.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //TODO 4.5 Get a reference to the sharedPreferences object
+        mPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         //TODO 4.6 Retrieve the value using the key, and set a default when there is none
 
         //TODO 3.13 Get the intent and retrieve the exchange rate passed to it
@@ -54,7 +56,13 @@ public class MainActivity extends AppCompatActivity {
         //TODO 3.2 Get a reference to the Set Exchange Rate Button
         //TODO 3.3 Set up setOnClickListener for this
         //TODO 3.4 Write an Explicit Intent to get to SubActivity
-
+        buttonSetExchangeRate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SubActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO 4.1 Go to res/menu/menu_main.xml and add a menu item Set Exchange Rate
     //TODO 4.2 In onOptionsItemSelected, add a new if-statement and code accordingly
 
+
     //TODO 5.1 Go to res/menu/menu_main.xml and add a menu item Open Map App
     //TODO 5.2 In onOptionsItemSelected, add a new if-statement
     //TODO 5.3 code the Uri object and set up the intent
@@ -93,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if (id == R.id.set_exchange_rate_menu_item){
+            Intent intent = new Intent(MainActivity.this, SubActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
