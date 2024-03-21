@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //TODO 4.5 Get a reference to the sharedPreferences object
-        mPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        mPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE);
         //TODO 4.6 Retrieve the value using the key, and set a default when there is none
 
         //TODO 3.13 Get the intent and retrieve the exchange rate passed to it
