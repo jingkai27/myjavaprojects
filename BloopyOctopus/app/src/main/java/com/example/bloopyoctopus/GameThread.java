@@ -27,6 +27,7 @@ public class GameThread extends Thread{
             if (canvas != null){
                 synchronized(surfaceHolder){
                     AppConstants.getGameEngine().updateAndDrawableBackgroundImage(canvas);
+                    AppConstants.getGameEngine().updateAndDrawOctopus(canvas);
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
@@ -47,7 +48,7 @@ public class GameThread extends Thread{
         return isRunning;
     }
 
-    public void setIsRunning(boolean state){
+    public void setRunning(boolean state){
         isRunning = state;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.bloopyoctopus;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -42,7 +43,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
         if (gameThread.isRunning()) {
-            gameThread.setIsRunning(false);
+            gameThread.setRunning(false);
             boolean retry = true;
             while (retry) {
                 try {
@@ -52,5 +53,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN){
+            AppConstants.getGameEngine().gameState = 1;
+            AppConstants.getGameEngine().octopus.setVelocity(AppConstants.VELOCITY_WHEN_JUMPED);
+        }
+        return true;
     }
 }
