@@ -1,5 +1,17 @@
-# myjavaprojects
+# My Random Projects
+> These are some projects that I do for fun :)
 
-This year, I am starting to learn Java. Join me as I improve on my Java coding, one step at a time!
+![Banner Image](link-to-image-if-available)
 
-My first step is to consolidate some of the problem sets that I have done thus far in school, namely 50.001 Information System projects. 
+**Project Name** is a [short description of your project]. It [what does it do] using [how does it do it], making it [what's the unique selling point].
+
+## 🌟 Features
+- **BloopyOctopus**: Coming Real Soon
+- **Feature 2**: Brief description of what it does
+- **Feature 3**: Brief description of what it does
+
+## 🚀 Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+What things you need to install the software and how to install them:

@@ -36,8 +36,9 @@ public class CharaAdapter extends RecyclerView.Adapter<CharaAdapter.CharaViewHol
     //TODO 11.6 the data at position i is extracted and placed on the i-th card
     @Override
     public void onBindViewHolder(@NonNull CharaViewHolder charaViewHolder, int i) {
-        String dataItemName = dataSource.getName(i);
-        charaViewHolder.textViewName.setText(dataItemName);
+        // what does charaViewHolder point to?
+        dataSource.putImageOnImageView(i, charaViewHolder.getImageViewChara());
+        dataSource.putNameOnTextView(i, charaViewHolder.getTextViewName());
     }
 
     //TODO 11.7 the total number of data points must be returned here
@@ -49,15 +50,23 @@ public class CharaAdapter extends RecyclerView.Adapter<CharaAdapter.CharaViewHol
     //TODO 11.4 complete the constructor to initialize the instance variables
     static class CharaViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView imageViewChara;
-        TextView textViewName;
+        private ImageView imageViewChara;
+        private TextView textViewName;
 
         CharaViewHolder(View view){
             super(view);
-            imageViewChara = view.findViewById(R.id.imageViewSelected);
+            //Why is it view.findViewByID? what does view refer to?
+            imageViewChara = view.findViewById(R.id.cardViewImage);
             textViewName = view.findViewById(R.id.cardViewTextName);
         }
 
+        public ImageView getImageViewChara() {
+            return imageViewChara;
+        }
+
+        public TextView getTextViewName() {
+            return textViewName;
+        }
     }
 
 

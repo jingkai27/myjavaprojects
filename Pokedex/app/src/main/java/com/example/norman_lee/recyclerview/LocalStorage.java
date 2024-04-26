@@ -8,8 +8,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class LocalStorage implements DataSource {
-
-
     private ArrayList<CardData> dataArrayList;
 
     LocalStorage(){
@@ -46,7 +44,9 @@ public class LocalStorage implements DataSource {
     }
     @Override
     public void putImageOnImageView(int i, ImageView imageView){
-        imageView.setImageBitmap( getImage(i));
+        if (imageView != null) {
+            imageView.setImageBitmap(getImage(i));
+        }
     }
     @Override
     public void putNameOnTextView( int i, TextView textView){

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -64,13 +65,17 @@ public class MainActivity extends AppCompatActivity {
             arrayListIds.add( R.drawable.spearow);
             arrayListIds.add( R.drawable.bulbasaur);
             dataSource = Utils.firstLoadImages(this, arrayListIds);
+            Log.i("Apple","Load from drawables");
         }else{
             dataSource = gson.fromJson(json, LocalStorage.class);
+            Log.i("Apple","Load from json");
         }
         //TODO 11.3 --> Go to CharaAdapter
 
         //TODO 11.8 Complete the necessary code to initialize your RecyclerView
-        charaAdapter = null;
+        charaAdapter = new CharaAdapter(this, dataSource);
+        recyclerView.setAdapter(charaAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 3));
 
         //TODO 12.9 [OPTIONAL] Add code to delete a RecyclerView item upon swiping. See notes for the code.
 
