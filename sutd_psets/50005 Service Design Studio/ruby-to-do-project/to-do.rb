@@ -9,6 +9,14 @@ class KeepTrackOfToDo
         def done
             @completed = true
         end
+
+        def getName
+            @name
+        end
+
+        def getCompleted
+            @completed
+        end
     end
 
     def initialize
@@ -22,8 +30,8 @@ class KeepTrackOfToDo
 
     def list
         puts "Your To-Do List: "
-        @todo.each_with_index do |index+1, item|
-            "#{index+1}, #{item}"
+        @todo.each_with_index do |task, index|
+            puts "#{index+1}. #{task.getName}"
         end
         @todo
     end
