@@ -49,6 +49,7 @@ class KeepTrackOfToDo
     def add(item)
         new_item = Task.new(item)
         @todo << new_item
+        puts "New Task added: #{item}"
     end
 
     def edit(index)
@@ -102,6 +103,24 @@ class KeepTrackOfToDo
     def getList
         @todo
     end
+
+    def run 
+        loop do 
+            puts "\n1. Add Item\n2. List Items\n3. Mark Item as Done\n4. Delete Item\n5. Save to File\n6. Load from File\n7. Exit"
+            print "Choose an option: "
+            choice = gets.chomp.to_i
+
+            case choice
+            when 1
+                print "Enter the Task"
+                task = gets.chomp 
+                add(item)
+            when 2
+                print "List all tasks"
+                list
+            end
+        end
+    end
 end
 
 # Usage
@@ -113,5 +132,5 @@ todo_list.list
 # Simulate reloading the application
 new_todo_list = KeepTrackOfToDo.new
 new_todo_list.read_from_file('todos.json')
-new_todo_list.list
+new_todo_list.run
 
