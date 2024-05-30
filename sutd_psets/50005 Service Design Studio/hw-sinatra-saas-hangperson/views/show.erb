@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hangperson Game</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <h1>Guess a letter</h1>
+  <p><%= @game.word_with_guesses %></p>
+  <p>Wrong guesses: <%= @game.wrong_guesses %></p>
+  <% if flash[:message] %>
+    <p><%= flash[:message] %></p>
+  <% end %>
+  <form action="/guess" method="post">
+    <input type="text" name="guess" maxlength="1" />
+    <button type="submit">Guess!</button>
+  </form>
+</body>
+</html>

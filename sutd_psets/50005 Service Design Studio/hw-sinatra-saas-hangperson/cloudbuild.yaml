@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/hangperson-424700/hangperson_img', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/hangperson-424700/hangperson_img']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'hangperson-service', '--image', 'gcr.io/hangperson-424700/hangperson_img', '--region', 'asia-southeast1', '--platform', 'managed']
+images:
+- gcr.io/hangperson-424700/hangperson_img
