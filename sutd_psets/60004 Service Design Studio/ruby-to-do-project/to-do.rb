@@ -1,23 +1,18 @@
 require 'json'
 
 class KeepTrackOfToDo
+    attr_accessor :todo
     # Task Class; a single instance of a Task object represents a single to-do object 
     class Task
+        attr_accessor :id, :name, :completed
         def initialize(taskname)
+            @id = id
             @name = taskname
             @completed = "Not Completed"
         end
 
         def done
             @completed = "Completed"
-        end
-
-        def getName
-            @name
-        end
-
-        def getCompleted
-            @completed
         end
 
         # This function converts the object from a Task Class into a dictionary
@@ -69,8 +64,8 @@ class KeepTrackOfToDo
             puts "Invalid input. Please enter a valid number."
         end
 
-        if num < getList.length() and num >= 0
-            task = getList[num]
+        if num < todo.length() and num >= 0
+            task = todo[num]
             puts "What do you want to edit?\n1. Task\n2. Status"
             choice = gets.chomp.to_i
 
@@ -84,10 +79,10 @@ class KeepTrackOfToDo
                 completed = gets.chomp.upcase
                 if completed == "Y"
                     task.setCompleted(true)
-                    puts "#{task}: Completed"
+                    puts "#{task.name}: Completed"
                 elsif completed == "N"
                     task.setCompleted(false)
-                    puts "#{task}: Not Completed"
+                    puts "#{task.name}: Not Completed"
                 else
                     puts "Invalid Input"
                 end
@@ -105,8 +100,8 @@ class KeepTrackOfToDo
         list
         p prompt
         num = gets.chomp.to_i - 1
-        if num < getList.length() and num >= 0
-            getList[num].setCompleted(true)
+        if num < todo.length() and num >= 0
+            todo[num].setCompleted(true)
         else
             return "Please select a valid number." 
         end 
@@ -118,8 +113,8 @@ class KeepTrackOfToDo
         list
         p prompt
         num = gets.chomp.to_i - 1
-        if num < getList.length() and num >= 0
-            getList.delete_at(num)
+        if num < todo.length() and num >= 0
+            todo.delete_at(num)
         else
             return "Number entered is not a valid number"
         end
@@ -143,12 +138,8 @@ class KeepTrackOfToDo
     def list
         puts "Your To-Do List: "
         @todo.each_with_index do |task, index|
-            puts "#{index+1}. #{task.getName}; Status: #{task.getCompleted}"
+            puts "#{index+1}. #{task.name}; Status: #{task.completed}"
         end
-        @todo
-    end
-
-    def getList
         @todo
     end
 
@@ -173,11 +164,11 @@ class KeepTrackOfToDo
             when 5
                 edit
             when 6
-                print "What do you want to name the file? "
+                print "What do you want to name the file? Do not include .json."
                 name = gets.chomp
                 save_to_file(name)
             when 7
-                print "What's the name of the file to be loaded? "
+                print "What's the name of the file to be loaded? Do not include.json."
                 name = gets.chomp
                 read_from_file(name)
             when 8 
