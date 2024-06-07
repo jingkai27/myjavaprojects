@@ -6,7 +6,7 @@ class KeepTrackOfToDo
     class Task
         attr_accessor :id, :name, :completed
         def initialize(taskname)
-            @id = id
+            @id = generate_id
             @name = taskname
             @completed = "Not Completed"
         end
@@ -18,12 +18,17 @@ class KeepTrackOfToDo
         # This function converts the object from a Task Class into a dictionary
         # This is largely for printing purposes.
         def to_h
-            { name: @name, completed: @completed }
+            { id:@id, name: @name, completed: @completed }
+        end
+
+        def generate_id
+            rand(1000..9999)
         end
 
         # This function converts the object from a dictionary into Task class object
         def self.from_h(hash)
             task = new(hash[:name])
+            task.id = hash[:id]
             task.setCompleted(hash[:completed])
             task
           end
@@ -138,7 +143,7 @@ class KeepTrackOfToDo
     def list
         puts "Your To-Do List: "
         @todo.each_with_index do |task, index|
-            puts "#{index+1}. #{task.name}; Status: #{task.completed}"
+            puts "#{index+1}. #{task.name}; Status: #{task.completed} (uid: #{task.id})"
         end
         @todo
     end
