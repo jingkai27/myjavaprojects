@@ -1,6 +1,9 @@
 require 'json'
+require 'httparty'
 
 class KeepTrackOfToDo
+    include HTTParty
+    base_uri 'http://localhost:3000'  # This is the base URI for the API
     attr_accessor :todo
     # Task Class; a single instance of a Task object represents a single to-do object 
     class Task
@@ -53,6 +56,12 @@ class KeepTrackOfToDo
     # Function to add a single to-do item.
     def add(item)
         new_item = Task.new(item)
+        response = self.class.post('/todos', body: new_item.to_h.to_json, headers: { 'Content-Type' => 'application/json' })
+        if response.code==201
+            puts "Task added successfully: #{item}"
+        else
+            puts "Task not added. Please try again. #{response.body}"
+        end
         @todo << new_item
         puts "New Task added: #{item}"
     end
@@ -94,6 +103,13 @@ class KeepTrackOfToDo
             else
                 puts " Invalid Input"
             end
+            
+            response = self.class.put("/todos/#{task.id}", body: task.to_h.to_json, headers: { 'Content-Type' => 'application/json' })
+            if response.code == 200
+                puts "Task updated: #{task.name}"
+            else
+                puts "Failed to update task: #{response.body}"
+            end
         else
             return "Please select a valid number." 
         end 
@@ -106,7 +122,14 @@ class KeepTrackOfToDo
         p prompt
         num = gets.chomp.to_i - 1
         if num < todo.length() and num >= 0
-            todo[num].setCompleted(true)
+            task = todo[num]
+            task.setCompleted(true)
+            response = self.class.put("/todos/#{task.id}", body: task.to_h.to_json, headers: { 'Content-Type' => 'application/json' })
+            if response.code == 200
+                puts "Task marked as completed: #{task.name}"
+            else
+                puts "Failed to mark task as completed: #{response.body}"
+            end
         else
             return "Please select a valid number." 
         end 
@@ -119,10 +142,35 @@ class KeepTrackOfToDo
         p prompt
         num = gets.chomp.to_i - 1
         if num < todo.length() and num >= 0
-            todo.delete_at(num)
+            task = @todo[num]
+            response = self.class.delete("/todos/#{task.id}")
+            if response.code == 204
+                @todo.delete_at(num)
+                puts "Task deleted: #{task.name}"
+            else
+                puts "Failed to delete task: #{response.body}"
+            end
         else
             return "Number entered is not a valid number"
         end
+    end
+
+    def fetch_todos
+        response = self.class.get('/todos')
+        if response.code == 200
+            @todo = response.parsed_response.map { |task_hash| Task.from_h(task_hash.transform_keys(&:to_sym)) }
+        else
+            puts "Failed to fetch tasks: #{response.body}"
+        end
+    end
+
+    def list 
+        fetch_todos
+        puts "Your To-Do List: "
+        @todo.each_with_index do |task, index|
+            puts "#{index+1}. #{task.name}; Status: #{task.completed}"
+        end
+        @todo
     end
 
     # Function to save the to-do list to a file, ensure persistence
@@ -186,14 +234,6 @@ class KeepTrackOfToDo
     end
 end
 
-# Usage
 todo_list = KeepTrackOfToDo.new
-todo_list.add("Buy groceries")
-todo_list.save_to_file('todos.json')
-todo_list.list
-
-# Simulate reloading the application
-new_todo_list = KeepTrackOfToDo.new
-new_todo_list.read_from_file('todos.json')
-new_todo_list.run
+todo_list.run
 
