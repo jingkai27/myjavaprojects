@@ -19,3 +19,17 @@ function foo(x) {
         }
     })
 }
+
+ev1.on('run', (data) => {
+    setImmediate(() => {
+        console.log(`data ${data} received by ev1`);
+        promise2.then((x) => foo(data));
+    });
+});
+ev2.on('run', (data) => {
+    setImmediate(() => {
+        console.log(`data ${data} received by ev2`);
+        promise1.then((x) => foo(data));
+    });
+});
+ev2.emit('run', count);

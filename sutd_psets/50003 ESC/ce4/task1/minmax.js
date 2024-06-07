@@ -15,7 +15,9 @@ function min_max(a) {
     var min = null;
     var max = null;
     // TODO: fixme
-    a.sort()
+    a.sort(function (a, b) {
+        return a - b;
+    })
     min = a[0];
     max = a[a.length - 1];
     return { min: min, max: max };
